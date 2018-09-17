@@ -43,6 +43,9 @@ public class CalculatorGUI extends JFrame {
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         Font titleFont = new Font(Font.SERIF, Font.PLAIN, 32);
         titleLabel.setFont(titleFont);
+        titleLabel.setOpaque(true);
+        titleLabel.setBackground(Color.DARK_GRAY);
+        titleLabel.setForeground(Color.WHITE);
         add(titleLabel, BorderLayout.PAGE_START);
         
         
@@ -51,15 +54,19 @@ public class CalculatorGUI extends JFrame {
         numberInPanel.setLayout(new GridLayout(2, 2));
         numberInPanel.setPreferredSize(new Dimension(250, 75));
         numberInPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        numberInPanel.setBackground(Color.GRAY);
+        numberInPanel.setForeground(Color.WHITE);
         add(numberInPanel, BorderLayout.LINE_START);
         
         JLabel num1 = new JLabel("First Number: ");
+        num1.setForeground(Color.WHITE);
         numberInPanel.add(num1);
              
         in1 = new JTextField(10);
         numberInPanel.add(in1);
         
         JLabel num2 = new JLabel("Second Number: ");
+        num2.setForeground(Color.WHITE);
         numberInPanel.add(num2);
         
         in2 = new JTextField(10);
@@ -70,11 +77,16 @@ public class CalculatorGUI extends JFrame {
         buttonPanel.setLayout(new GridLayout(2, 2));
         buttonPanel.setPreferredSize(new Dimension (300, 50));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        Color gray2 = new Color(160, 160, 160);
+        buttonPanel.setBackground(gray2);
         add(buttonPanel, BorderLayout.LINE_END);
+        
         
         
         //average button set-up
         JButton averageBtn = new JButton("Average");
+        averageBtn.setBackground(Color.LIGHT_GRAY);
+        averageBtn.setForeground(Color.BLACK);
         averageBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +98,8 @@ public class CalculatorGUI extends JFrame {
         
         //factorial button set-up
         JButton factorialBtn = new JButton("Factorial");
+        factorialBtn.setBackground(Color.LIGHT_GRAY);
+        factorialBtn.setForeground(Color.BLACK);
         factorialBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,6 +111,8 @@ public class CalculatorGUI extends JFrame {
         
         //higher number button set-up
         JButton higherBtn = new JButton("Higher");
+        higherBtn.setBackground(Color.LIGHT_GRAY);
+        higherBtn.setForeground(Color.BLACK);
         higherBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,6 +125,8 @@ public class CalculatorGUI extends JFrame {
         
       //percent change button set-up
         JButton perChangeBtn = new JButton("Percent Change");
+        perChangeBtn.setBackground(Color.LIGHT_GRAY);
+        perChangeBtn.setForeground(Color.BLACK);
         perChangeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,6 +139,9 @@ public class CalculatorGUI extends JFrame {
 		
         answer = new JLabel("Answer: ");
         answer.setPreferredSize(new Dimension (500, 100));
+        answer.setOpaque(true);
+        answer.setBackground(Color.WHITE);
+        answer.setForeground(Color.BLACK);
         Font answerFont = new Font(Font.SERIF, Font.PLAIN, 20);
         answer.setFont(answerFont);
         add(answer, BorderLayout.PAGE_END);
@@ -129,17 +150,41 @@ public class CalculatorGUI extends JFrame {
 	}
 
 	private void calcHigher() {
-		// TODO Auto-generated method stub
+		double x = Double.parseDouble(in1.getText());
+		double y = Double.parseDouble(in2.getText());
+		
+		if(x>y) {
+			answer.setText("The higher number is: " + x);
+		}
+		else {
+			answer.setText("The higher number is: " + y);
+		}
 		
 	}
 
 	private void calcPerChange() {
-		// TODO Auto-generated method stub
+		double x = Double.parseDouble(in1.getText());
+		double y = Double.parseDouble(in2.getText());
+		
+		double change = (x-y)/x *100; 
+		if(change<0) {
+			change = change*-1;
+		}
+		answer.setText("The percent change is: " + change);
 		
 	}
 
 	private void calcFactorial() {
-		// TODO Auto-generated method stub
+		double X = Double.parseDouble(in1.getText());
+		int x = (int)X;
+		double fact = x;
+		while(x>1) {
+			fact = fact*(x-1);
+			x--;
+		}
+		answer.setText("The factorial of the first number is: " + fact);
+		
+	 
 		
 	}
 
@@ -150,8 +195,7 @@ public class CalculatorGUI extends JFrame {
 		double avg = (x + y)/2;
 		
 		answer.setText("Average is: " + avg);
-		
-		
+
 		
 	}
 
@@ -172,3 +216,4 @@ public class CalculatorGUI extends JFrame {
 	}
 
 }
+//done
